@@ -1,0 +1,36 @@
+package application
+
+import (
+	"github.com/labstack/echo/v4"
+	"github.com/lohanguedes/templOfLearning/handler"
+)
+
+type Application struct {
+	echo *echo.Echo
+	user handler.UserHandler
+}
+
+func New(options ...func(*Application)) *Application {
+	app := &Application{echo: echo.New()}
+
+	for _, opt := range options {
+		opt(app)
+	}
+	return app
+}
+
+func WithUserhandler(h handler.UserHandler) func(*Application) {
+	return func(app *Application) {
+		app.user = h
+	}
+}
+
+func (app *Application) WithGlobalMiddleware(middlewares ...echo.MiddlewareFunc) {
+	for _, m := range middlewares {
+		app.echo.Use(m)
+	}
+}
+
+func (app *Application) Start(addr string) {
+	app.echo.Start(addr)
+}
