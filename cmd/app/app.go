@@ -6,8 +6,9 @@ import (
 )
 
 type Application struct {
-	echo *echo.Echo
-	user handler.UserHandler
+	echo  *echo.Echo
+	user  handler.UserHandler
+	pages handler.PageHandler
 }
 
 func New(options ...func(*Application)) *Application {
@@ -22,6 +23,12 @@ func New(options ...func(*Application)) *Application {
 func WithUserhandler(h handler.UserHandler) func(*Application) {
 	return func(app *Application) {
 		app.user = h
+	}
+}
+
+func WithPageHandler(ph handler.PageHandler) func(*Application) {
+	return func(app *Application) {
+		app.pages = ph
 	}
 }
 

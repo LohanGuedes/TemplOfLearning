@@ -1,0 +1,10 @@
+package pages
+
+import "github.com/lohanguedes/templOfLearning/view/layout"
+import "github.com/lohanguedes/templOfLearning/view/hero"
+
+templ Home() {
+	@layout.Base() {
+		@hero.Hero()
+	}
+}

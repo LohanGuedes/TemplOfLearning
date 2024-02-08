@@ -1,9 +1,6 @@
 package layout
 
-import "github.com/lohanguedes/templOfLearning/view/hero"
-
 templ Base() {
-	<!DOCTYPE html>
 	<html>
 		<head>
 			<meta charset="UTF-8"/>
@@ -13,10 +10,6 @@ templ Base() {
 		</head>
 		<body>
 			@nav()
-			@hero.Hero()
-			<h1 class="text-3xl font-bold underline">
-				Hello world!
-			</h1>
 			{ children... }
 		</body>
 	</html>

@@ -10,12 +10,15 @@ import (
 )
 
 func main() {
-	port := flag.String("port", "8080", "HTTP port")
+	var addr string
+	port := flag.String("port", ":8080", "HTTP port default :8080")
 	flag.Parse()
 
 	userHandler := handler.UserHandler{}
+	pageHandler := handler.PageHandler{}
 	app := application.New(
 		application.WithUserhandler(userHandler),
+		application.WithPageHandler(pageHandler),
 	)
 
 	app.WithGlobalMiddleware(
@@ -26,9 +29,8 @@ func main() {
 	app.BindRoutes()
 
 	if runtime.GOOS == "darwin" {
-		app.Start("localhost:" + *port)
-		return
+		addr = "localhost" + *port
 	}
 
-	app.Start(":" + *port)
+	app.Start(addr)
 }

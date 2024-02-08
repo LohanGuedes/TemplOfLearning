@@ -1,19 +1,16 @@
 package user
 
-import "github.com/lohanguedes/templOfLearning/view/layout"
 import "github.com/lohanguedes/templOfLearning/types"
 import "strconv"
 
 templ ShowUser(u types.User) {
-	@layout.Base() {
-		<div class="">
-			<h2>User: </h2>
-			<h3>{ u.Name }</h3>
-			<p>
-				Age: { strconv.Itoa(u.Age) }
-				Email: { u.Email }
-			</p>
-			<button type="button" hx-get="/users/12" hx-target="this">My Message</button>
-		</div>
-	}
+	<div class="">
+		<h2>User: </h2>
+		<h3>{ u.Name }</h3>
+		<p>
+			Age: { strconv.Itoa(u.Age) }
+			Email: { u.Email }
+		</p>
+		<button type="button" hx-get="/users/12" hx-target="this">My Message</button>
+	</div>
 }
