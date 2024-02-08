@@ -4,8 +4,11 @@ WORKDIR /app
 
 COPY . .
 
-RUN apk add --no-cache upx make
-RUN go mod download && make production/deploy
+RUN apk add --no-cache \
+    upx \
+    make \
+    && go mod download \
+    && make production/deploy
 
 FROM scratch
 
