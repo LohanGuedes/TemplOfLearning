@@ -7,13 +7,11 @@ COPY . .
 RUN apk add --no-cache upx make
 RUN go mod download && make production/deploy
 
-
-FROM alpine:latest
+FROM scratch
 
 WORKDIR /app
 
 COPY --from=build /tmp/bin/api .
-COPY --from=build /app .
 
 EXPOSE 8080
 
