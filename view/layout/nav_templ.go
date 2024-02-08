@@ -23,7 +23,7 @@ func nav() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templ.WriteWatchModeString(templ_7745c5c3_Buffer, 1)
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"bg-blue-200 flex text-3xl flex-row gap-x-4 py-4 fixed w-screen z-40\"><div><a href=\"#\">Home</a></div><div><a href=\"#\">About</a></div><div><a href=\"#\">plans</a></div></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

@@ -1,5 +1,3 @@
-# The top-level version property is defined by the Compose Specification for backward compatibility. It is only informative
-
 services:
   app:
     depends_on:
@@ -12,8 +10,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: 0.6
-          memory: 200MB
+          cpus: "0.6"
+          memory: "200MB"
 
   db:
     image: postgres:latest
@@ -29,8 +27,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: 0.13
-          memory: 140MB
+          cpus: "0.13"
+          memory: "140MB"
 
 volumes:
   psql_volume:

@@ -90,5 +90,4 @@ push: tidy audit no-dirty
 .PHONY: production/deploy
 production/deploy: build
 	upx -5 /tmp/bin/${BINARY_NAME}
-	# Include additional deployment steps here...
 	

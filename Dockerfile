@@ -7,12 +7,14 @@ COPY . .
 RUN apk add --no-cache upx make
 RUN go mod download && make production/deploy
 
-FROM scratch
+
+FROM alpine:latest
 
 WORKDIR /app
 
-COPY --from=build /app/tmp/bin/ .
+COPY --from=build /tmp/bin/api .
+COPY --from=build /app .
 
 EXPOSE 8080
 
-ENTRYPOINT [ "./app/api" ]
+ENTRYPOINT [ "./api" ]
