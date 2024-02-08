@@ -88,8 +88,7 @@ push: tidy audit no-dirty
 
 ## production/deploy: deploy the application to production
 .PHONY: production/deploy
-production/deploy: confirm tidy audit no-dirty
-	GOOS=linux GOARCH=amd64 go build -ldflags='-s' -o=/tmp/bin/linux_amd64/${BINARY_NAME} ${MAIN_PACKAGE_PATH}
-	upx -5 /tmp/bin/linux_amd64/${BINARY_NAME}
+production/deploy: build
+	upx -5 /tmp/bin/${BINARY_NAME}
 	# Include additional deployment steps here...
 	

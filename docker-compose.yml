@@ -1,0 +1,38 @@
+# The top-level version property is defined by the Compose Specification for backward compatibility. It is only informative
+
+services:
+  app:
+    depends_on:
+      - db
+    image: tol_app
+    hostname: temple_of_learning
+    # environment:
+    ports:
+      - "8081:8080"
+    deploy:
+      resources:
+        limits:
+          cpus: 0.6
+          memory: 200MB
+
+  db:
+    image: postgres:latest
+    hostname: db
+    environment:
+      POSTGRES_DB: ${DB_DATABASE}
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "${DB_PORT}:5432"
+    volumes:
+      - psql_volume:/var/lib/postgresql/data
+    deploy:
+      resources:
+        limits:
+          cpus: 0.13
+          memory: 140MB
+
+volumes:
+  psql_volume:
+# networks:
+#   # What to put here?
