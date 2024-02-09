@@ -27,6 +27,6 @@ func (h UserHandler) handleGetUserByID(c echo.Context) error {
 }
 
 func (h UserHandler) Grouper(g *echo.Group) {
-	g.GET("/", h.handleShowUser)       // /users/
-	g.GET("/:id", h.handleGetUserByID) // /users/123
+	g.GET("/", h.handleShowUser)
+	g.GET("/:id", h.handleGetUserByID)
 }

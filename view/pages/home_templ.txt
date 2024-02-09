@@ -1,4 +1,1 @@
- <div class=\"\"><h2>User: </h2><h3>
-</h3><p>Age: 
- Email: 
-</p><button type=\"button\" hx-get=\"/users/12\" hx-target=\"this\">My Message</button></div>
+ <div><p>This is the content rendered from HOME</p></div>
