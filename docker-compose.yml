@@ -7,9 +7,8 @@ services:
     depends_on:
       db:
         condition: service_healthy
-    image: to_app
     build:
-      context: ./
+      context: .
     hostname: tol_instance1
     # environment:
     expose:
@@ -19,22 +18,13 @@ services:
         limits:
           cpus: "0.6"
           memory: "200MB"
-    healthcheck:
-      test:
-        [
-          "CMD-SHELL",
-          "sh -c $(curl --location https://taskfile.dev/install.sh)",
-        ]
-      interval: 10s
-      timeout: 3s
-      retries: 3
 
   tol_app2:
     networks:
       - tol_network
     <<: *tol1 # Get previous config from first instance
     hostname: tol_instance2
-    ports:
+    expose:
       - "8082:8080"
     # environment:
 

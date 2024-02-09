@@ -11,15 +11,17 @@ RUN apk add --no-cache \
     && go mod download \
     && make production/deploy
 
-FROM scratch
+FROM alpine:latest
 
 WORKDIR /app
 
 COPY --from=build /tmp/bin/api .
-COPY --from=build /usr/bin/curl .
+
+RUN apk add --no-cache curl
 
 EXPOSE 8080
 
-HEALTHCHECK --interval=10s --timeout=3s CMD ./curl -f http://localhost:8080/ || exit 1
+HEALTHCHECK --interval=60s --timeout=3s CMD ["/bin/sh", "-c", "curl -f http://localhost:8080/v1/health || exit 1"]
 
 ENTRYPOINT [ "./api" ]
+
