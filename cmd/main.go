@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"fmt"
 	"runtime"
 
 	"github.com/labstack/echo/v4/middleware"
@@ -29,8 +30,9 @@ func main() {
 	app.BindRoutes()
 
 	if runtime.GOOS == "darwin" {
-		addr = "localhost" + *port
+		addr = "localhost"
 	}
 
-	app.Start(addr)
+	fmt.Printf("%s\n", addr+*port)
+	app.Start(addr + *port)
 }

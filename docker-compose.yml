@@ -51,12 +51,14 @@ services:
     networks:
       - tol_network
     image: postgres:latest
+    env_file:
+      - ./.env
     hostname: db
     environment:
-      POSTGRES_DB: ${DB_DATABASE}
-      POSTGRES_USER: ${DB_USERNAME}
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
-    expose:
+      - POSTGRES_DB=${DB_DATABASE:?Must specify DB_DATABASE}
+      - POSTGRES_USER=${DB_USERNAME:?Must specify DB_USERNAME}
+      - POSTGRES_PASSWORD=${DB_PASSWORD:?Must specify DB_PASSWORD}
+    ports:
       - "${DB_PORT}:5432"
     volumes:
       - psql_volume:/var/lib/postgresql/data

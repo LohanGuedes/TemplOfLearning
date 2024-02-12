@@ -1,6 +1,7 @@
 # Change these variables as necessary.
 MAIN_PACKAGE_PATH := ./cmd/
 BINARY_NAME := api
+CONN_STRING := ${GOOSE_CONN_STRING}
 
 # ==================================================================================== #
 # HELPERS
@@ -61,6 +62,17 @@ test/cover:
 build:
 	# Include additional build steps, like TypeScript, SCSS or Tailwind compilation here...
 	go build -o=/tmp/bin/${BINARY_NAME} ${MAIN_PACKAGE_PATH}
+
+
+## goose-up: run all the UP migrations
+.PHONY: goose-up
+goose-up:
+	goose -dir ./sql/schema/ postgres ${CONN_STRING} up
+
+## goose-down: run all the DOWN migrations
+.PHONY: goose-down
+goose-down:
+	goose -dir ./sql/schema/ postgres ${CONN_STRING} down
 
 ## run: run the  application
 .PHONY: run

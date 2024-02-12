@@ -16,6 +16,7 @@ FROM alpine:latest
 WORKDIR /app
 
 COPY --from=build /tmp/bin/api .
+COPY --from=build . .
 
 RUN apk add --no-cache curl
 
