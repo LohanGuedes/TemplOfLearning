@@ -11,12 +11,12 @@ import (
 )
 
 type User struct {
-	ID        uuid.UUID
-	Username  string
-	Email     string
-	Password  []byte
-	Role      string
-	Verified  sql.NullBool
-	CreatedAt sql.NullTime
-	UpdatedAt sql.NullTime
+	ID        uuid.UUID    `json:"id"`
+	Username  string       `json:"username"`
+	Email     string       `json:"email"`
+	Password  []byte       `json:"password"`
+	Role      string       `json:"role"`
+	Verified  sql.NullBool `json:"verified"`
+	CreatedAt sql.NullTime `json:"created_at"`
+	UpdatedAt sql.NullTime `json:"updated_at"`
 }

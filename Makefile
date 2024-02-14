@@ -88,6 +88,15 @@ run/live:
 		--build.include_ext "go, tpl, tmpl, html, css, scss, js, ts, sql, jpeg, jpg, gif, png, bmp, svg, webp, ico" \
 		--misc.clean_on_exit "true"
 
+## tailwind-watch: run tailwind in --watch mode for changes in styles
+.PHONY: tailwind-watch
+tailwind-watch:
+	tailwindcss -i ./static/css/input.css -o ./static/css/style.css --watch
+
+## tailwind-watch: build tailwind styles, minified version
+.PHONY: tailwind-build
+tailwind-build:
+	tailwindcss -i ./static/css/input.css -o ./static/css/style.css --minify
 
 # ==================================================================================== #
 # OPERATIONS

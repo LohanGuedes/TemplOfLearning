@@ -1,14 +1,12 @@
 package user
 
-import "github.com/lohanguedes/templOfLearning/types"
-import "strconv"
+import "github.com/lohanguedes/templOfLearning/internal/database"
 
-templ ShowUser(u types.User) {
+templ ShowUser(u database.User) {
 	<div class="">
 		<h2>User: </h2>
-		<h3>{ u.Name }</h3>
+		<h3>{ u.Username }</h3>
 		<p>
-			Age: { strconv.Itoa(u.Age) }
 			Email: { u.Email }
 		</p>
 		<button type="button" hx-get="/users/12" hx-target="this">My Message</button>

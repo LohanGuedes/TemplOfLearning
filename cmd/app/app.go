@@ -3,9 +3,11 @@ package application
 import (
 	"github.com/labstack/echo/v4"
 	"github.com/lohanguedes/templOfLearning/handler"
+	"github.com/lohanguedes/templOfLearning/internal/database"
 )
 
 type Application struct {
+	DB    *database.Queries
 	echo  *echo.Echo
 	user  handler.UserHandler
 	pages handler.PageHandler

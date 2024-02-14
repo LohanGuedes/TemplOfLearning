@@ -2,7 +2,6 @@ package main
 
 import (
 	"flag"
-	"fmt"
 	"runtime"
 
 	"github.com/labstack/echo/v4/middleware"
@@ -14,6 +13,11 @@ func main() {
 	var addr string
 	port := flag.String("port", ":8080", "HTTP port default :8080")
 	flag.Parse()
+
+    conn, err := pgx.Connect(context.Background(), os.Getenv("DATABASE_URL"))
+    if err != nil {
+
+    }
 
 	userHandler := handler.UserHandler{}
 	pageHandler := handler.PageHandler{}
@@ -33,6 +37,5 @@ func main() {
 		addr = "localhost"
 	}
 
-	fmt.Printf("%s\n", addr+*port)
 	app.Start(addr + *port)
 }
