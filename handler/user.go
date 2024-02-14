@@ -19,15 +19,8 @@ func (h UserHandler) handleShowUser(c echo.Context) error {
 	return nil
 }
 
-type CreateUserParams struct {
-	Username string `json:"username"`
-	Email    string `json:"email"`
-	Password []byte `json:"password"`
-	Role     string `json:"role"`
-}
-
 func (h UserHandler) handleCreateUser(c echo.Context) error {
-	var data CreateUserParams
+	var data database.CreateUserParams
 
 	err := json.NewDecoder(c.Request().Body).Decode(&data)
 	if err != nil {

@@ -1,33 +1,50 @@
 package main
 
 import (
+	"context"
 	"flag"
+	"log"
 	"runtime"
 
+	"github.com/jackc/pgx/v5"
+	"github.com/joho/godotenv"
 	"github.com/labstack/echo/v4/middleware"
 	application "github.com/lohanguedes/templOfLearning/cmd/app"
 	"github.com/lohanguedes/templOfLearning/handler"
+	"github.com/lohanguedes/templOfLearning/internal/database"
 )
 
 func main() {
 	var addr string
 	port := flag.String("port", ":8080", "HTTP port default :8080")
+	envFile := flag.String("env", ".env", "Enviroment file")
 	flag.Parse()
 
-    conn, err := pgx.Connect(context.Background(), os.Getenv("DATABASE_URL"))
-    if err != nil {
+	env, err := godotenv.Read(*envFile)
+	if err != nil {
+		log.Fatal(err)
+	}
 
-    }
+	ctx := context.Background()
+	conn, err := pgx.Connect(ctx, env["DB_CONN_STRING"])
+	if err != nil {
+	}
+	defer conn.Close(ctx)
 
-	userHandler := handler.UserHandler{}
+	queries := database.New(conn)
+
+	userHandler := handler.UserHandler{
+		DB: *queries,
+	}
 	pageHandler := handler.PageHandler{}
+
 	app := application.New(
 		application.WithUserhandler(userHandler),
 		application.WithPageHandler(pageHandler),
 	)
 
 	app.WithGlobalMiddleware(
-		middleware.Logger(),
+		middleware.Logger(), // TODO: Make this logger better for developmemnt.
 		middleware.Recover(),
 	)
 

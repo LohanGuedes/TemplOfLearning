@@ -5,18 +5,16 @@
 package database
 
 import (
-	"database/sql"
-
-	"github.com/google/uuid"
+	"github.com/jackc/pgx/v5/pgtype"
 )
 
 type User struct {
-	ID        uuid.UUID    `json:"id"`
-	Username  string       `json:"username"`
-	Email     string       `json:"email"`
-	Password  []byte       `json:"password"`
-	Role      string       `json:"role"`
-	Verified  sql.NullBool `json:"verified"`
-	CreatedAt sql.NullTime `json:"created_at"`
-	UpdatedAt sql.NullTime `json:"updated_at"`
+	ID        pgtype.UUID      `json:"id"`
+	Username  string           `json:"username"`
+	Email     string           `json:"email"`
+	Password  []byte           `json:"password"`
+	Role      string           `json:"role"`
+	Verified  pgtype.Bool      `json:"verified"`
+	CreatedAt pgtype.Timestamp `json:"created_at"`
+	UpdatedAt pgtype.Timestamp `json:"updated_at"`
 }

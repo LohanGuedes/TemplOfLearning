@@ -1,7 +1,7 @@
 # Change these variables as necessary.
 MAIN_PACKAGE_PATH := ./cmd/
 BINARY_NAME := api
-CONN_STRING := ${GOOSE_CONN_STRING}
+CONN_STRING := ${DB_CONN_STRING}
 
 # ==================================================================================== #
 # HELPERS
