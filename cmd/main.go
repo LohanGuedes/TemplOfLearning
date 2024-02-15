@@ -12,6 +12,7 @@ import (
 	application "github.com/lohanguedes/templOfLearning/cmd/app"
 	"github.com/lohanguedes/templOfLearning/handler"
 	"github.com/lohanguedes/templOfLearning/internal/database"
+	userservice "github.com/lohanguedes/templOfLearning/internal/user-service"
 )
 
 func main() {
@@ -31,10 +32,11 @@ func main() {
 	}
 	defer conn.Close(ctx)
 
-	queries := database.New(conn)
+	db := database.New(conn)
 
+	us := userservice.New(db)
 	userHandler := handler.UserHandler{
-		DB: *queries,
+		UserService: us,
 	}
 	pageHandler := handler.PageHandler{}
 

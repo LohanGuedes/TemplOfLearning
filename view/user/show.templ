@@ -9,6 +9,9 @@ templ ShowUser(u database.User) {
 		<p>
 			Email: { u.Email }
 		</p>
+		<p>
+			role: { u.Role }
+		</p>
 		<button type="button" hx-get="/users/12" hx-target="this">My Message</button>
 	</div>
 }
