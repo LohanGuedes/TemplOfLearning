@@ -4,7 +4,6 @@ import (
 	"context"
 	"flag"
 	"log"
-	"runtime"
 
 	"github.com/jackc/pgx/v5"
 	"github.com/joho/godotenv"
@@ -52,9 +51,9 @@ func main() {
 
 	app.BindRoutes()
 
-	if runtime.GOOS == "darwin" {
-		addr = "localhost"
-	}
+	// if runtime.GOOS == "darwin" {
+	// 	addr = "localhost"
+	// }
 
 	app.Start(addr + *port)
 }
